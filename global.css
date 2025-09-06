@@ -1,0 +1,167 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color tokens to more brownish theme */
+  --background: #fef7ed; /* Warmer cream background */
+  --foreground: #451a03; /* Dark brown text */
+  --card: #ffffff; /* White card for content display */
+  --card-foreground: #451a03; /* Dark brown text on cards */
+  --popover: #ffffff; /* White popover background */
+  --popover-foreground: #451a03; /* Dark brown text in popovers */
+  --primary: #92400e; /* Darker brown primary */
+  --primary-foreground: #ffffff; /* Text on primary buttons */
+  --secondary: #a16207; /* Brown secondary */
+  --secondary-foreground: #ffffff; /* Text on secondary buttons */
+  --muted: #fef7ed; /* Muted elements */
+  --muted-foreground: #451a03; /* Text on muted elements */
+  --accent: #a16207; /* Brown accent elements */
+  --accent-foreground: #ffffff; /* Text on accent elements */
+  --destructive: #dc2626; /* Destructive actions */
+  --destructive-foreground: #ffffff; /* Text on destructive buttons */
+  --border: #d97706; /* Brown borders */
+  --input: #ffffff; /* Input fields background */
+  --ring: #92400e; /* Focus rings */
+  --chart-1: #a16207; /* Chart colors in brown tones */
+  --chart-2: #92400e;
+  --chart-3: #451a03;
+  --chart-4: #dc2626;
+  --chart-5: #d97706;
+  --radius: 0.5rem;
+  --sidebar: #fef7ed;
+  --sidebar-foreground: #451a03;
+  --sidebar-primary: #92400e;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #a16207;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #d97706;
+  --sidebar-ring: #92400e;
+}
+
+.dark {
+  /* Updated dark mode colors for brownish theme */
+  --background: #1c1917; /* Dark brown background */
+  --foreground: #fef7ed; /* Light cream text */
+  --card: #292524; /* Dark brown card */
+  --card-foreground: #fef7ed; /* Light text on cards */
+  --popover: #292524; /* Dark popover */
+  --popover-foreground: #fef7ed; /* Light text in popovers */
+  --primary: #d97706; /* Amber primary */
+  --primary-foreground: #1c1917; /* Dark text on primary */
+  --secondary: #78716c; /* Muted brown secondary */
+  --secondary-foreground: #fef7ed; /* Light text on secondary */
+  --muted: #44403c; /* Muted dark brown */
+  --muted-foreground: #d6d3d1; /* Light muted text */
+  --accent: #a16207; /* Brown accent */
+  --accent-foreground: #1c1917; /* Dark text on accent */
+  --destructive: #dc2626; /* Red destructive */
+  --destructive-foreground: #fef7ed; /* Light text on destructive */
+  --border: #44403c; /* Dark brown border */
+  --input: #292524; /* Dark input background */
+  --ring: #d97706; /* Amber focus ring */
+  --chart-1: #d97706;
+  --chart-2: #a16207;
+  --chart-3: #78716c;
+  --chart-4: #dc2626;
+  --chart-5: #fbbf24;
+  --sidebar: #1c1917;
+  --sidebar-foreground: #fef7ed;
+  --sidebar-primary: #d97706;
+  --sidebar-primary-foreground: #1c1917;
+  --sidebar-accent: #a16207;
+  --sidebar-accent-foreground: #1c1917;
+  --sidebar-border: #44403c;
+  --sidebar-ring: #d97706;
+}
+
+@theme inline {
+  --font-serif: var(--font-pt-serif);
+  --font-sans: var(--font-pt-serif);
+  --font-mono: var(--font-pt-serif);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply text-foreground bg-background;
+    background-image: url("/images/temple-background.png");
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    /* Added transition for smooth theme switching */
+    transition: background-color 0.3s ease;
+  }
+
+  /* Enhanced dark mode overlay with better opacity and smoother transition */
+  .dark body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(28, 25, 23, 0.85); /* Increased opacity for better dark theme */
+    pointer-events: none;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Added light mode overlay for consistency */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(254, 247, 237, 0.1); /* Very light overlay in light mode */
+    pointer-events: none;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+
+  .dark body::after {
+    opacity: 0;
+  }
+}
