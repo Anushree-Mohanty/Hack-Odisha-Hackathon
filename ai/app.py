@@ -19,10 +19,10 @@ def main():
 
     # Generate demo heatmap with dummy zones
     zone_counts = {
-        "Singhdwar": count,
-        "Jagamohan": count // 2,
-        "Natamandap": count // 3,
-        "Bhogamandap": count // 1.5
+        "Main Temple": count,
+        "Entrance Gate": count // 2,
+        "Prasad Counter": count // 3,
+        "Queue Area": count // 1.5
     }
     generate_heatmap(zone_counts)
 
